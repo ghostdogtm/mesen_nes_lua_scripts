@@ -12,14 +12,14 @@ function initCodeStart()
   for i = 0, ram_size do
     ram_table[i] = 0
   end
-  
+
   if ram_write_ref ~= nil then
     emu.removeMemoryCallback(ram_write_ref, emu.memCallbackType.cpuWrite, 0, ram_size)
   end
   if init_code_stop_ref ~= nil then
     emu.removeEventCallback(init_code_stop_ref, emu.eventType.nmi)
   end
-  
+
   ram_write_ref = emu.addMemoryCallback(ramWriteCallback, emu.memCallbackType.cpuWrite, 0, ram_size)
   init_code_stop_ref = emu.addEventCallback(initCodeStop, emu.eventType.nmi)
 end
